@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Atividade_1.Models.Convidado>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Criar convidado</a>
+    <br />
+    <a asp-action="IndexTodos">Ver todos</a>
+    <br />
+    <a asp-action="IndexComparecimento">Ver somente os que irão comparecer</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ConvidadoId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EMail)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Telefone)
+            </th>
+            <th>
+                Comparecimento
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ConvidadoId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EMail)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Telefone)
+                </td>
+                <td>
+                    @(item.Comparecimento == true ? "Sim" : (item.Comparecimento == false ? "Não" : ""))
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "Edit", new { id = item.ConvidadoId }) |
+                    @Html.ActionLink("Detalhes", "Details", new { id = item.ConvidadoId }) |
+                    @Html.ActionLink("Deletar", "Delete", new { id = item.ConvidadoId })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
